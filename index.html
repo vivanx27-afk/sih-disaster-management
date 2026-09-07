@@ -3,995 +3,798 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFESETU — Disaster Readiness Platform</title>
 
-<title>SafeSetu | Hyperlocal Disaster Readiness</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --navy:#081d31;
-    --navy2:#0d2942;
-    --blue:#1976d2;
-    --blue2:#2d8cff;
-    --bg:#f4f7fb;
-    --card:#ffffff;
-    --text:#10243a;
-    --muted:#6b7d91;
-    --border:#dce5ee;
-
-    --green:#20a56b;
-    --yellow:#e5a400;
-    --orange:#ef7c21;
-    --red:#dc3d48;
-
-    --shadow:0 10px 30px rgba(8,29,49,.07);
-    --radius:18px;
-}
-
-* {
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body {
-    font-family:Inter, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-}
-
-button,
-input,
-select,
-textarea {
-    font:inherit;
-}
-
-button {
-    cursor:pointer;
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#071d30;
+  --navy2:#0c2d48;
+  --blue:#1677d2;
+  --bg:#f4f7fb;
+  --white:#fff;
+  --text:#102437;
+  --muted:#718195;
+  --border:#dce5ed;
+  --green:#18a66a;
+  --yellow:#e3a000;
+  --orange:#ed7820;
+  --red:#d93d4b;
+  --shadow:0 8px 28px rgba(10,35,55,.07);
 }
 
-.app {
-    display:flex;
-    min-height:100vh;
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-/* ================= SIDEBAR ================= */
+button,select,input,textarea{font-family:inherit}
 
-.sidebar {
-    width:260px;
-    background:var(--navy);
-    color:white;
-    padding:26px 16px;
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    z-index:100;
-}
+.app{min-height:100vh;display:flex}
 
-.logo {
-    font-size:30px;
-    font-weight:800;
-    padding:8px 10px 35px;
-    letter-spacing:-1.5px;
-}
+/* SIDEBAR */
 
-.logo span {
-    color:#35a0ff;
+.sidebar{
+  width:250px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  background:var(--navy);
+  color:white;
+  padding:25px 15px;
 }
 
-.demo-label {
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:.8px;
-    padding:5px 9px;
-    border-radius:20px;
-    background:#fff3cd;
-    color:#805c00;
+.logo{
+  font-family:Manrope;
+  font-size:29px;
+  font-weight:800;
+  padding:5px 12px 28px;
 }
 
-.sidebar .demo-label {
-    margin:0 10px 25px;
-}
+.logo span{color:#36a0ff}
 
-.nav-title {
-    font-size:11px;
-    color:#8095a9;
-    font-weight:700;
-    letter-spacing:1px;
-    margin:18px 10px 10px;
+.demo{
+  display:inline-block;
+  background:#fff2c9;
+  color:#795900;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.7px;
 }
 
-.nav-item {
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color:#c8d5e1;
-    padding:13px 12px;
-    border-radius:15px;
-    margin:4px 0;
-    font-size:14px;
-    font-weight:600;
-    transition:.2s;
-}
+.sidebar .demo{margin:0 10px 25px}
 
-.nav-item:hover,
-.nav-item.active {
-    background:#173e5d;
-    color:white;
+.nav-heading{
+  font-size:10px;
+  color:#7890a5;
+  font-weight:800;
+  margin:18px 10px 8px;
+  letter-spacing:1px;
 }
 
-.nav-icon {
-    width:22px;
-    text-align:center;
-    font-size:17px;
+.nav{
+  padding:12px;
+  border-radius:12px;
+  margin:4px 0;
+  color:#c8d6e2;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
 }
-
-/* ================= MAIN ================= */
 
-.main {
-    margin-left:260px;
-    width:calc(100% - 260px);
+.nav:hover,.nav.active{
+  background:#173d5b;
+  color:white;
 }
 
-.topbar {
-    height:92px;
-    background:white;
-    border-bottom:1px solid var(--border);
-    padding:20px 46px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    position:sticky;
-    top:0;
-    z-index:50;
-}
+/* MAIN */
 
-.page-title h2 {
-    font-family:Manrope;
-    font-size:24px;
-    margin-bottom:5px;
+.main{
+  margin-left:250px;
+  width:calc(100% - 250px);
 }
 
-.page-title p {
-    color:var(--muted);
-    font-size:13px;
+.topbar{
+  background:white;
+  border-bottom:1px solid var(--border);
+  padding:18px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
-.location-selector {
-    display:flex;
-    align-items:center;
-    gap:10px;
+.top-title h2{
+  font-family:Manrope;
+  font-size:22px;
 }
 
-.location-selector label {
-    color:var(--muted);
-    font-size:12px;
-    font-weight:600;
+.top-title p{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
 }
 
-.location-selector select {
-    border:1px solid var(--border);
-    background:#fff;
-    border-radius:11px;
-    padding:10px 14px;
-    color:var(--text);
-    font-weight:600;
-    outline:none;
+.location-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.content {
-    padding:34px 46px 60px;
-    max-width:1500px;
+.location-box select{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px 13px;
+  background:white;
+  font-size:12px;
+  font-weight:700;
+  color:var(--text);
 }
 
-.hero-heading {
-    margin-bottom:24px;
+.content{
+  padding:32px 40px 60px;
+  max-width:1450px;
 }
 
-.hero-heading h1 {
-    font-family:Manrope;
-    font-size:36px;
-    letter-spacing:-1.2px;
-    margin-bottom:7px;
+.hero{
+  margin-bottom:20px;
 }
 
-.hero-heading p {
-    color:var(--muted);
+.hero h1{
+  font-family:Manrope;
+  font-size:35px;
+  letter-spacing:-1px;
 }
 
-/* ================= LOCATION BAR ================= */
-
-.location-bar {
-    background:#eaf3fc;
-    border:1px solid #cfe3f8;
-    padding:13px 17px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:22px;
-    gap:15px;
+.hero p{
+  color:var(--muted);
+  margin-top:5px;
 }
 
-.location-main {
-    display:flex;
-    align-items:center;
-    gap:9px;
-    font-weight:700;
+.location-bar{
+  background:#eaf4fd;
+  border:1px solid #cce2f5;
+  padding:13px 16px;
+  border-radius:13px;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.location-main span {
-    color:var(--blue);
+.location-name{
+  color:var(--blue);
+  font-size:13px;
+  font-weight:800;
 }
 
-.location-note {
-    color:#58708a;
-    font-size:12px;
+.location-note{
+  color:#607991;
+  font-size:10px;
 }
 
-/* ================= GRID ================= */
+/* CARDS */
 
-.grid {
-    display:grid;
-    gap:20px;
+.grid{
+  display:grid;
+  gap:18px;
 }
 
-.grid-4 {
-    grid-template-columns:repeat(4,1fr);
-}
+.four{grid-template-columns:repeat(4,1fr)}
+.two{grid-template-columns:repeat(2,1fr)}
 
-.grid-3 {
-    grid-template-columns:repeat(3,1fr);
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:21px;
+  box-shadow:var(--shadow);
 }
 
-.grid-2 {
-    grid-template-columns:repeat(2,1fr);
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:17px;
 }
 
-.card {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    padding:23px;
+.card-header h3{
+  font-size:15px;
+  font-weight:800;
 }
 
-.card-title {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+.card-header p{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
 }
 
-.card-title h3 {
-    font-size:16px;
-    font-weight:800;
-}
+/* STAT */
 
-.card-title p {
-    color:var(--muted);
-    font-size:12px;
-    margin-top:4px;
+.stat{
+  min-height:125px;
 }
 
-/* ================= STAT CARDS ================= */
-
-.stat-card {
-    padding:21px;
+.stat-label{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
 }
 
-.stat-top {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:13px;
+.stat-icon{
+  float:right;
+  background:#edf5fc;
+  border-radius:10px;
+  padding:9px;
 }
 
-.stat-icon {
-    width:40px;
-    height:40px;
-    display:grid;
-    place-items:center;
-    background:#edf5fd;
-    border-radius:12px;
-    font-size:19px;
+.stat-value{
+  font-family:Manrope;
+  font-size:27px;
+  font-weight:800;
+  margin-top:14px;
 }
 
-.stat-label {
-    color:var(--muted);
-    font-size:12px;
-    font-weight:600;
+.stat-small{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
 }
 
-.stat-value {
-    font-family:Manrope;
-    font-size:27px;
-    font-weight:800;
-}
+/* RISK */
 
-.stat-description {
-    font-size:11px;
-    color:var(--muted);
-    margin-top:4px;
+.risk{
+  background:linear-gradient(135deg,#08243b,#123c5c);
+  color:white;
+  min-height:300px;
 }
 
-/* ================= RISK ================= */
-
-.risk-card {
-    background:linear-gradient(135deg,#09233a,#123957);
-    color:white;
-    overflow:hidden;
-    position:relative;
-    min-height:310px;
+.risk-label{
+  color:#b9cbd9;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.5px;
 }
 
-.risk-card::after {
-    content:"";
-    width:300px;
-    height:300px;
-    border:35px solid rgba(255,255,255,.04);
-    border-radius:50%;
-    position:absolute;
-    right:-100px;
-    top:-120px;
+.score-row{
+  display:flex;
+  align-items:flex-end;
+  margin-top:15px;
 }
 
-.risk-location {
-    color:#d9e5ef;
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:18px;
+.score{
+  font-family:Manrope;
+  font-size:82px;
+  line-height:.85;
+  font-weight:800;
 }
 
-.risk-score-row {
-    display:flex;
-    align-items:flex-end;
-    gap:8px;
+.outof{
+  color:#91a7b9;
+  margin:0 0 7px 7px;
 }
 
-.risk-score {
-    font-family:Manrope;
-    font-size:82px;
-    line-height:.9;
-    font-weight:800;
+.status{
+  display:inline-block;
+  margin-top:22px;
+  padding:8px 14px;
+  border-radius:30px;
+  background:#4b3b08;
+  color:#ffc940;
+  font-size:10px;
+  font-weight:800;
 }
 
-.risk-outof {
-    color:#9eb1c2;
-    font-size:16px;
-    margin-bottom:10px;
+.risk-bar{
+  height:8px;
+  background:#29475e;
+  border-radius:10px;
+  margin-top:18px;
+  overflow:hidden;
 }
 
-.risk-status {
-    display:inline-block;
-    margin-top:22px;
-    padding:9px 15px;
-    border-radius:30px;
-    background:rgba(229,164,0,.18);
-    color:#ffbf42;
-    font-weight:800;
-    font-size:12px;
+.risk-fill{
+  width:48%;
+  height:100%;
+  background:var(--yellow);
+  transition:1s;
 }
 
-.risk-status.orange {
-    background:rgba(239,124,33,.2);
-    color:#ff9a51;
+.risk-text{
+  color:#b9cbd9;
+  font-size:11px;
+  line-height:1.6;
+  margin-top:18px;
 }
 
-.risk-explanation {
-    position:absolute;
-    right:30px;
-    bottom:30px;
-    max-width:330px;
-    color:#bdd0e0;
-    line-height:1.6;
-    font-size:13px;
-}
+/* FACTORS */
 
-.risk-bar {
-    margin-top:22px;
-    height:8px;
-    border-radius:20px;
-    background:#29465e;
-    overflow:hidden;
-    position:relative;
-    z-index:2;
-}
+.factor{margin:15px 0}
 
-.risk-fill {
-    height:100%;
-    width:48%;
-    background:#e5a400;
-    transition:.8s;
+.factor-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  margin-bottom:6px;
 }
 
-/* ================= FACTORS ================= */
+.factor-head b{font-weight:800}
 
-.factor {
-    margin:15px 0;
+.factor-track{
+  height:7px;
+  background:#edf1f4;
+  border-radius:10px;
 }
 
-.factor-head {
-    display:flex;
-    justify-content:space-between;
-    font-size:12px;
-    margin-bottom:7px;
+.factor-fill{
+  height:100%;
+  background:var(--blue);
+  border-radius:10px;
 }
 
-.factor-head span:last-child {
-    font-weight:800;
-}
+/* AQI */
 
-.factor-bar {
-    height:8px;
-    background:#edf1f5;
-    border-radius:20px;
-    overflow:hidden;
+.aqi-number{
+  font-family:Manrope;
+  font-size:58px;
+  font-weight:800;
 }
 
-.factor-fill {
-    height:100%;
-    border-radius:20px;
-    background:var(--blue);
+.aqi-status{
+  display:inline-block;
+  padding:7px 12px;
+  border-radius:20px;
+  background:#fff1cf;
+  color:#8a6500;
+  font-size:10px;
+  font-weight:800;
+  margin:4px 0 18px;
 }
-
-/* ================= AQI ================= */
 
-.aqi-value {
-    font-family:Manrope;
-    font-size:54px;
-    font-weight:800;
+.aqi-details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.aqi-label {
-    display:inline-block;
-    padding:7px 12px;
-    border-radius:20px;
-    background:#fff1d4;
-    color:#956600;
-    font-size:12px;
-    font-weight:800;
-    margin:5px 0 18px;
+.aqi-detail{
+  background:#f5f7f9;
+  padding:11px;
+  border-radius:10px;
 }
 
-.aqi-meta {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+.aqi-detail small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
 }
 
-.aqi-meta div {
-    padding:12px;
-    background:#f6f8fa;
-    border-radius:12px;
-}
+.aqi-detail b{font-size:12px}
 
-.aqi-meta small {
-    display:block;
-    color:var(--muted);
-    margin-bottom:4px;
-}
+/* ALERTS */
 
-.aqi-meta strong {
-    font-size:14px;
+.alert{
+  padding:14px;
+  border-radius:12px;
+  display:flex;
+  gap:11px;
+  margin-bottom:10px;
 }
-
-/* ================= HOSPITALS ================= */
 
-.hospital {
-    display:flex;
-    gap:13px;
-    padding:14px 0;
-    border-bottom:1px solid var(--border);
-}
+.alert:last-child{margin-bottom:0}
 
-.hospital:last-child {
-    border-bottom:0;
+.alert.warning{
+  background:#fff8e9;
+  border:1px solid #f0d99b;
 }
 
-.hospital-icon {
-    width:43px;
-    height:43px;
-    border-radius:12px;
-    display:grid;
-    place-items:center;
-    background:#eef7f3;
-    font-size:20px;
+.alert.info{
+  background:#edf6ff;
+  border:1px solid #c9e2f8;
 }
 
-.hospital-info {
-    flex:1;
-}
+.alert-icon{font-size:19px}
 
-.hospital-info h4 {
-    font-size:13px;
-    margin-bottom:5px;
+.alert h4{
+  font-size:12px;
+  margin-bottom:4px;
 }
 
-.hospital-info p {
-    font-size:11px;
-    color:var(--muted);
+.alert p{
+  color:#65788b;
+  font-size:10px;
+  line-height:1.5;
 }
 
-.prepared {
-    color:var(--green);
-    font-weight:800;
-}
+/* HOSPITALS */
 
-.directions {
-    border:0;
-    background:#eaf3fc;
-    color:var(--blue);
-    border-radius:9px;
-    padding:7px 9px;
-    font-size:10px;
-    font-weight:800;
+.hospital{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
 }
 
-/* ================= ALERT ================= */
+.hospital:last-child{border-bottom:0}
 
-.alert {
-    padding:17px;
-    border-radius:14px;
-    display:flex;
-    gap:13px;
-    margin-bottom:12px;
-    border:1px solid;
+.hospital-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:#eaf7f1;
+  display:grid;
+  place-items:center;
 }
 
-.alert:last-child {
-    margin-bottom:0;
-}
+.hospital-info{flex:1}
 
-.alert-warning {
-    background:#fff8e8;
-    border-color:#f4dda0;
+.hospital-info h4{
+  font-size:12px;
+  margin-bottom:4px;
 }
 
-.alert-info {
-    background:#edf6ff;
-    border-color:#c9e1f8;
+.hospital-info p{
+  color:var(--muted);
+  font-size:9px;
 }
 
-.alert-icon {
-    font-size:21px;
+.ready{
+  color:var(--green)!important;
+  font-weight:800;
+  margin-top:4px;
 }
 
-.alert h4 {
-    font-size:13px;
-    margin-bottom:5px;
+.partial{
+  color:#a37000!important;
+  font-weight:800;
+  margin-top:4px;
 }
 
-.alert p {
-    font-size:11px;
-    color:#66798c;
-    line-height:1.5;
+.direction{
+  border:0;
+  background:#eaf4fd;
+  color:var(--blue);
+  border-radius:8px;
+  padding:7px 8px;
+  font-size:9px;
+  font-weight:800;
 }
 
-/* ================= MAP ================= */
+/* MAP */
 
-.map {
-    height:300px;
-    border-radius:15px;
-    background:
-        linear-gradient(30deg,transparent 45%,rgba(25,118,210,.07) 46%,transparent 48%),
-        linear-gradient(120deg,transparent 45%,rgba(25,118,210,.07) 46%,transparent 48%),
-        #edf3f8;
-    position:relative;
-    overflow:hidden;
+.map{
+  height:270px;
+  background:#edf3f8;
+  border-radius:13px;
+  position:relative;
+  overflow:hidden;
 }
 
-.map-road {
-    position:absolute;
-    height:4px;
-    background:white;
-    transform:rotate(-20deg);
-    width:130%;
-    left:-10%;
+.road{
+  position:absolute;
+  width:120%;
+  height:4px;
+  background:white;
+  left:-10%;
 }
-
-.road1 { top:85px; }
-.road2 { top:180px; transform:rotate(15deg); }
-.road3 { top:130px; transform:rotate(75deg); }
 
-.map-zone {
-    position:absolute;
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    background:rgba(239,124,33,.18);
-    border:2px solid rgba(239,124,33,.55);
-    left:43%;
-    top:24%;
-    display:grid;
-    place-items:center;
-}
+.r1{top:70px;transform:rotate(-20deg)}
+.r2{top:160px;transform:rotate(14deg)}
+.r3{top:115px;transform:rotate(70deg)}
 
-.map-zone span {
-    background:#ef7c21;
-    color:white;
-    border-radius:20px;
-    padding:7px 10px;
-    font-size:10px;
-    font-weight:800;
+.zone{
+  position:absolute;
+  width:145px;
+  height:145px;
+  border-radius:50%;
+  background:rgba(237,120,32,.18);
+  border:2px solid rgba(237,120,32,.5);
+  left:43%;
+  top:22%;
+  display:grid;
+  place-items:center;
 }
 
-.map-user {
-    position:absolute;
-    left:52%;
-    top:48%;
-    width:16px;
-    height:16px;
-    border:4px solid white;
-    background:var(--blue);
-    border-radius:50%;
-    box-shadow:0 0 0 7px rgba(25,118,210,.2);
+.zone span{
+  background:var(--orange);
+  color:white;
+  border-radius:20px;
+  padding:7px 10px;
+  font-size:9px;
+  font-weight:800;
 }
 
-.map-label {
-    position:absolute;
-    left:20px;
-    bottom:15px;
-    background:white;
-    padding:9px 12px;
-    border-radius:10px;
-    font-size:11px;
-    font-weight:700;
-    box-shadow:var(--shadow);
+.user-dot{
+  position:absolute;
+  width:15px;
+  height:15px;
+  border:4px solid white;
+  border-radius:50%;
+  background:var(--blue);
+  left:51%;
+  top:47%;
 }
 
-/* ================= SIMULATION ================= */
-
-.simulation {
-    background:#fff;
-    border:2px solid #d9e9f8;
-}
+/* SIMULATION */
 
-.sim-header {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
+.simulation{
+  border:2px solid #d5e8f8;
 }
 
-.sim-header h3 {
-    font-size:17px;
+.sim-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.sim-header p {
-    font-size:12px;
-    color:var(--muted);
-    margin-top:5px;
-}
+.sim-head h3{font-size:16px}
 
-.sim-btn {
-    border:0;
-    background:var(--blue);
-    color:white;
-    padding:12px 17px;
-    border-radius:11px;
-    font-size:12px;
-    font-weight:800;
+.sim-head p{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
 }
 
-.sim-btn:hover {
-    background:#1264b5;
+.run{
+  border:0;
+  background:var(--blue);
+  color:white;
+  border-radius:10px;
+  padding:11px 15px;
+  font-size:10px;
+  font-weight:800;
 }
 
-.slider-area {
-    margin-top:24px;
+.slider{
+  margin-top:22px;
 }
 
-.slider-area label {
-    display:flex;
-    justify-content:space-between;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:10px;
+.slider label{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:8px;
 }
 
-input[type="range"] {
-    width:100%;
-    accent-color:var(--blue);
-}
+.slider input{width:100%}
 
-.sim-stages {
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:20px;
+.stages{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:18px;
 }
 
-.stage {
-    padding:14px;
-    border-radius:12px;
-    background:#f5f8fb;
-    border:1px solid var(--border);
-    font-size:11px;
+.stage{
+  background:#f5f8fa;
+  border:1px solid var(--border);
+  padding:12px;
+  border-radius:11px;
+  font-size:9px;
 }
 
-.stage.active {
-    border-color:#8ec2ef;
-    background:#edf6ff;
+.stage.active{
+  background:#edf6ff;
+  border-color:#9fcaf0;
 }
 
-.stage strong {
-    display:block;
-    margin-bottom:5px;
-    font-size:12px;
+.stage b{
+  display:block;
+  font-size:10px;
+  margin-bottom:5px;
 }
 
-.stage span {
-    color:var(--muted);
-    line-height:1.4;
-}
+.stage span{color:var(--muted)}
 
-/* ================= READINESS ================= */
+/* READINESS */
 
-.readiness-item {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:13px 0;
-    border-bottom:1px solid var(--border);
+.readiness{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.readiness-item:last-child {
-    border-bottom:0;
-}
+.readiness:last-child{border-bottom:0}
 
-.readiness-item strong {
-    font-size:12px;
-}
+.readiness b{font-size:11px}
 
-.status-pill {
-    padding:6px 9px;
-    border-radius:20px;
-    font-size:10px;
-    font-weight:800;
+.pill{
+  padding:5px 8px;
+  border-radius:20px;
+  font-size:8px;
+  font-weight:800;
 }
 
-.status-ready {
-    color:var(--green);
-    background:#e8f7f0;
+.pill.ready{
+  background:#e7f7ef;
+  color:var(--green);
 }
 
-.status-partial {
-    color:#a56f00;
-    background:#fff5d9;
+.pill.partial{
+  background:#fff3d5;
+  color:#9a6c00;
 }
 
-.status-alert {
-    color:var(--orange);
-    background:#fff0e6;
+.pill.triggered{
+  background:#fff0e8;
+  color:var(--orange);
 }
 
-/* ================= REPORT ================= */
+/* REPORT */
 
-.form-group {
-    margin-bottom:15px;
-}
+.form-group{margin-bottom:12px}
 
-.form-group label {
-    display:block;
-    font-size:11px;
-    font-weight:700;
-    margin-bottom:7px;
+.form-group label{
+  display:block;
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:5px;
 }
 
 .form-group input,
 .form-group textarea,
-.form-group select {
-    width:100%;
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:11px;
-    outline:none;
-    background:white;
+.form-group select{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:9px;
+  font-size:11px;
+  outline:none;
 }
 
-.form-group textarea {
-    resize:vertical;
-    min-height:80px;
+.form-group textarea{min-height:65px}
+
+.submit{
+  width:100%;
+  background:var(--navy);
+  color:white;
+  border:0;
+  border-radius:9px;
+  padding:11px;
+  font-size:10px;
+  font-weight:800;
 }
 
-.submit-btn {
+/* FOOTER */
+
+.footer{
+  margin-top:30px;
+  border-top:1px solid var(--border);
+  padding-top:18px;
+  color:var(--muted);
+  font-size:9px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* MOBILE */
+
+.mobile-header{display:none}
+
+.bottom-nav{display:none}
+
+@media(max-width:1050px){
+  .four{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:800px){
+
+  .sidebar{display:none}
+
+  .main{
+    margin-left:0;
     width:100%;
-    border:0;
-    padding:12px;
-    border-radius:11px;
+    padding-bottom:65px;
+  }
+
+  .mobile-header{
+    display:flex;
     background:var(--navy);
     color:white;
-    font-weight:800;
-}
-
-/* ================= FOOTER ================= */
-
-.footer {
-    margin-top:35px;
-    padding-top:20px;
-    border-top:1px solid var(--border);
-    display:flex;
+    height:60px;
+    align-items:center;
     justify-content:space-between;
+    padding:0 16px;
+  }
+
+  .mobile-logo{
+    font-family:Manrope;
+    font-size:23px;
+    font-weight:800;
+  }
+
+  .mobile-logo span{color:#36a0ff}
+
+  .topbar{
+    display:block;
+    padding:15px;
+    position:static;
+  }
+
+  .location-box{
+    margin-top:12px;
+    display:block;
+  }
+
+  .location-box select{
+    width:100%;
+    margin-top:5px;
+  }
+
+  .content{padding:22px 14px}
+
+  .hero h1{font-size:28px}
+
+  .four,.two{grid-template-columns:1fr}
+
+  .location-bar{
+    display:block;
+  }
+
+  .location-note{
+    margin-top:7px;
+  }
+
+  .score{font-size:65px}
+
+  .sim-head{
+    display:block;
+  }
+
+  .run{
+    width:100%;
+    margin-top:14px;
+  }
+
+  .stages{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer{
+    display:block;
+    line-height:1.7;
+  }
+
+  .bottom-nav{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:64px;
+    background:white;
+    border-top:1px solid var(--border);
+    justify-content:space-around;
+    align-items:center;
+    z-index:50;
+  }
+
+  .bottom-nav button{
+    border:0;
+    background:none;
     color:var(--muted);
-    font-size:11px;
-}
+    font-size:9px;
+    font-weight:700;
+  }
 
-/* ================= MOBILE ================= */
-
-.mobile-header {
-    display:none;
-}
-
-@media(max-width:1100px) {
-    .grid-4 {
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .grid-3 {
-        grid-template-columns:1fr 1fr;
-    }
-
-    .risk-explanation {
-        position:static;
-        margin-top:25px;
-    }
-
-    .risk-card {
-        min-height:auto;
-    }
-}
-
-@media(max-width:800px) {
-
-    .sidebar {
-        display:none;
-    }
-
-    .main {
-        margin-left:0;
-        width:100%;
-        padding-bottom:70px;
-    }
-
-    .mobile-header {
-        display:flex;
-        height:65px;
-        background:var(--navy);
-        color:white;
-        align-items:center;
-        justify-content:space-between;
-        padding:0 18px;
-        position:sticky;
-        top:0;
-        z-index:100;
-    }
-
-    .mobile-logo {
-        font-size:23px;
-        font-weight:800;
-    }
-
-    .mobile-logo span {
-        color:#35a0ff;
-    }
-
-    .topbar {
-        height:auto;
-        padding:15px 18px;
-        display:block;
-        position:static;
-    }
-
-    .page-title h2 {
-        font-size:18px;
-    }
-
-    .location-selector {
-        margin-top:13px;
-        display:block;
-    }
-
-    .location-selector label {
-        display:block;
-        margin-bottom:5px;
-    }
-
-    .location-selector select {
-        width:100%;
-    }
-
-    .content {
-        padding:22px 16px 40px;
-    }
-
-    .hero-heading h1 {
-        font-size:27px;
-    }
-
-    .grid-4,
-    .grid-3,
-    .grid-2 {
-        grid-template-columns:1fr;
-    }
-
-    .risk-score {
-        font-size:65px;
-    }
-
-    .risk-explanation {
-        font-size:12px;
-    }
-
-    .sim-header {
-        display:block;
-    }
-
-    .sim-btn {
-        margin-top:15px;
-        width:100%;
-    }
-
-    .sim-stages {
-        grid-template-columns:1fr 1fr;
-    }
-
-    .location-bar {
-        display:block;
-    }
-
-    .location-note {
-        display:block;
-        margin-top:8px;
-    }
-
-    .footer {
-        display:block;
-        line-height:1.7;
-    }
-
-    .bottom-nav {
-        position:fixed;
-        left:0;
-        right:0;
-        bottom:0;
-        height:64px;
-        background:white;
-        border-top:1px solid var(--border);
-        display:flex;
-        justify-content:space-around;
-        align-items:center;
-        z-index:100;
-        box-shadow:0 -5px 20px rgba(0,0,0,.06);
-    }
-
-    .bottom-nav button {
-        background:none;
-        border:0;
-        color:var(--muted);
-        font-size:10px;
-        font-weight:700;
-    }
-
-    .bottom-nav button span {
-        display:block;
-        font-size:19px;
-        margin-bottom:3px;
-    }
-}
-
-@media(min-width:801px) {
-    .bottom-nav {
-        display:none;
-    }
+  .bottom-nav span{
+    display:block;
+    font-size:18px;
+    margin-bottom:3px;
+  }
 }
 </style>
 </head>
@@ -1000,1421 +803,1153 @@ input[type="range"] {
 
 <div class="app">
 
-<!-- ================= SIDEBAR ================= -->
-
+<!-- SIDEBAR -->
 <aside class="sidebar">
 
-    <div class="logo">
-        Safe<span>Setu</span>
-    </div>
+  <div class="logo">Safe<span>Setu</span></div>
 
-    <div class="demo-label">
-        ● DEMO ENVIRONMENT
-    </div>
+  <span class="demo">● DEMO ENVIRONMENT</span>
 
-    <div class="nav-title">CITIZEN</div>
+  <div class="nav-heading">CITIZEN</div>
 
-    <div class="nav-item active">
-        <span class="nav-icon">⌂</span>
-        Home
-    </div>
+  <div class="nav active">⌂ &nbsp; Home</div>
+  <div class="nav">◉ &nbsp; Live Risk Map</div>
+  <div class="nav">! &nbsp; Alerts</div>
+  <div class="nav">▣ &nbsp; Safety Guide</div>
+  <div class="nav">✚ &nbsp; Nearby Help</div>
+  <div class="nav">✎ &nbsp; Report Incident</div>
 
-    <div class="nav-item">
-        <span class="nav-icon">◉</span>
-        Live Risk Map
-    </div>
+  <div class="nav-heading">SYSTEM</div>
 
-    <div class="nav-item">
-        <span class="nav-icon">!</span>
-        Alerts
-    </div>
-
-    <div class="nav-item">
-        <span class="nav-icon">▣</span>
-        Safety Guide
-    </div>
-
-    <div class="nav-item">
-        <span class="nav-icon">✚</span>
-        Nearby Help
-    </div>
-
-    <div class="nav-item">
-        <span class="nav-icon">✎</span>
-        Report Incident
-    </div>
-
-    <div class="nav-title">SYSTEM</div>
-
-    <div class="nav-item">
-        <span class="nav-icon">◌</span>
-        Emergency Contacts
-    </div>
-
-    <div class="nav-item">
-        <span class="nav-icon">⚙</span>
-        Settings
-    </div>
+  <div class="nav">☎ &nbsp; Emergency Contacts</div>
+  <div class="nav">⚙ &nbsp; Settings</div>
 
 </aside>
 
-<!-- ================= MAIN ================= -->
-
 <main class="main">
 
-    <div class="mobile-header">
-        <div class="mobile-logo">
-            Safe<span>Setu</span>
-        </div>
-        <span class="demo-label">DEMO</span>
+<!-- MOBILE HEADER -->
+<div class="mobile-header">
+  <div class="mobile-logo">Safe<span>Setu</span></div>
+  <span class="demo">DEMO</span>
+</div>
+
+<!-- TOPBAR -->
+<header class="topbar">
+
+  <div class="top-title">
+    <h2>Citizen Safety Overview</h2>
+    <p id="subtitle">
+      Ward 12 • Shettihalli • Bengaluru • DEMO DATA
+    </p>
+  </div>
+
+  <div class="location-box">
+    <label>📍</label>
+
+    <select id="locationSelect" onchange="changeLocation()">
+
+      <option value="bengaluru">
+        Ward 12 — Shettihalli, Bengaluru
+      </option>
+
+      <option value="jaipur">
+        Jaipur — Rajasthan
+      </option>
+
+      <option value="delhi">
+        Delhi — Delhi NCR
+      </option>
+
+      <option value="guwahati">
+        Guwahati — Assam
+      </option>
+
+    </select>
+
+  </div>
+
+</header>
+
+<section class="content">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Good evening</h1>
+  <p>Your hyperlocal safety overview</p>
+</div>
+
+<!-- LOCATION -->
+<div class="location-bar">
+
+  <div class="location-name">
+    📍 <span id="locationName">
+      Ward 12 — Shettihalli, Bengaluru
+    </span>
+  </div>
+
+  <div class="location-note">
+    SIMULATED LOCATION DATA
+  </div>
+
+</div>
+
+<!-- STATISTICS -->
+<div class="grid four">
+
+  <div class="card stat">
+
+    <span class="stat-label">ACTIVE ALERTS</span>
+    <span class="stat-icon">🚨</span>
+
+    <div class="stat-value" id="alertsCount">2</div>
+
+    <div class="stat-small">
+      Relevant to selected area
     </div>
 
-    <!-- TOPBAR -->
+  </div>
 
-    <header class="topbar">
+  <div class="card stat">
 
-        <div class="page-title">
-            <h2>Citizen Safety Overview</h2>
-            <p id="locationSubtitle">
-                Ward 12 • Shettihalli • Bengaluru • DEMO DATA
-            </p>
+    <span class="stat-label">RAINFALL</span>
+    <span class="stat-icon">🌧️</span>
+
+    <div class="stat-value" id="rainfall">42 mm</div>
+
+    <div class="stat-small">
+      Simulated reading
+    </div>
+
+  </div>
+
+  <div class="card stat">
+
+    <span class="stat-label">NEARBY HOSPITALS</span>
+    <span class="stat-icon">🏥</span>
+
+    <div class="stat-value" id="hospitalCount">3</div>
+
+    <div class="stat-small">
+      Facilities in demo area
+    </div>
+
+  </div>
+
+  <div class="card stat">
+
+    <span class="stat-label">AIR QUALITY</span>
+    <span class="stat-icon">🌫️</span>
+
+    <div class="stat-value" id="aqiStat">82</div>
+
+    <div class="stat-small">
+      AQI • Simulated
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+
+<!-- RISK + AQI -->
+<div class="grid two">
+
+  <!-- RISK -->
+  <div class="card risk">
+
+    <div class="risk-label">
+      SAFESETU RISK SCORE
+    </div>
+
+    <div class="score-row">
+      <div class="score" id="riskScore">48</div>
+      <div class="outof">/ 100</div>
+    </div>
+
+    <div class="status" id="riskStatus">
+      MONITOR
+    </div>
+
+    <div class="risk-bar">
+      <div class="risk-fill" id="riskFill"></div>
+    </div>
+
+    <div class="risk-text" id="riskText">
+      Rainfall conditions are being monitored.
+      Stay informed and review verified local advisories.
+    </div>
+
+  </div>
+
+  <!-- AQI -->
+  <div class="card">
+
+    <div class="card-header">
+
+      <div>
+        <h3>🌫️ Air Quality</h3>
+        <p id="aqiLocation">
+          Selected location
+        </p>
+      </div>
+
+      <span class="demo">DEMO</span>
+
+    </div>
+
+    <div class="aqi-number" id="aqi">
+      82
+    </div>
+
+    <div class="aqi-status" id="aqiStatus">
+      MODERATE
+    </div>
+
+    <div class="aqi-details">
+
+      <div class="aqi-detail">
+        <small>PM2.5</small>
+        <b id="pm25">34 µg/m³</b>
+      </div>
+
+      <div class="aqi-detail">
+        <small>PM10</small>
+        <b id="pm10">58 µg/m³</b>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+
+<!-- RISK FACTORS -->
+<div class="card">
+
+  <div class="card-header">
+
+    <div>
+      <h3>Risk Explanation</h3>
+      <p>Transparent SAFESETU scoring model</p>
+    </div>
+
+    <span class="demo">DEMO MODEL</span>
+
+  </div>
+
+  <div class="factor">
+
+    <div class="factor-head">
+      <span>Live Hazard</span>
+      <b>40%</b>
+    </div>
+
+    <div class="factor-track">
+      <div class="factor-fill" style="width:40%"></div>
+    </div>
+
+  </div>
+
+  <div class="factor">
+
+    <div class="factor-head">
+      <span>Historical Vulnerability</span>
+      <b>25%</b>
+    </div>
+
+    <div class="factor-track">
+      <div class="factor-fill" style="width:25%"></div>
+    </div>
+
+  </div>
+
+  <div class="factor">
+
+    <div class="factor-head">
+      <span>Population Vulnerability</span>
+      <b>20%</b>
+    </div>
+
+    <div class="factor-track">
+      <div class="factor-fill" style="width:20%"></div>
+    </div>
+
+  </div>
+
+  <div class="factor">
+
+    <div class="factor-head">
+      <span>Facility Proximity</span>
+      <b>15%</b>
+    </div>
+
+    <div class="factor-track">
+      <div class="factor-fill" style="width:15%"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+
+<!-- ALERTS + HOSPITALS -->
+<div class="grid two">
+
+  <!-- ALERTS -->
+  <div class="card">
+
+    <div class="card-header">
+
+      <div>
+        <h3>🚨 Latest Alerts</h3>
+        <p>Area-specific safety information</p>
+      </div>
+
+      <span class="demo">DEMO</span>
+
+    </div>
+
+    <div id="alerts">
+
+      <div class="alert warning">
+
+        <div class="alert-icon">🌧️</div>
+
+        <div>
+          <h4>Flood Preparedness Advisory</h4>
+
+          <p>
+            Increased rainfall may cause temporary
+            waterlogging in low-lying areas.
+          </p>
         </div>
 
-        <div class="location-selector">
-            <label for="locationSelect">📍 Location</label>
+      </div>
 
-            <select id="locationSelect" onchange="changeLocation()">
-                <option value="bengaluru">
-                    Ward 12 — Shettihalli, Bengaluru
-                </option>
+      <div class="alert info">
 
-                <option value="jaipur">
-                    Jaipur — Rajasthan
-                </option>
+        <div class="alert-icon">ℹ️</div>
 
-                <option value="delhi">
-                    Delhi — Delhi NCR
-                </option>
+        <div>
+          <h4>Monitor Local Conditions</h4>
 
-                <option value="guwahati">
-                    Guwahati — Assam
-                </option>
-            </select>
+          <p>
+            Follow verified government advisories
+            for emergency instructions.
+          </p>
         </div>
 
-    </header>
+      </div>
 
-    <section class="content">
+    </div>
 
-        <!-- HERO -->
+  </div>
 
-        <div class="hero-heading">
-            <h1>Good evening</h1>
-            <p>Your hyperlocal safety overview</p>
-        </div>
+  <!-- HOSPITALS -->
+  <div class="card">
 
-        <!-- LOCATION -->
+    <div class="card-header">
 
-        <div class="location-bar">
+      <div>
+        <h3>🏥 Nearby Hospitals</h3>
+        <p>Emergency facilities near selected location</p>
+      </div>
 
-            <div class="location-main">
-                📍
-                <span id="currentLocation">
-                    Ward 12 — Shettihalli, Bengaluru
-                </span>
-            </div>
+      <span class="demo">DEMO</span>
 
-            <div class="location-note">
-                Location selected for this demonstration
-            </div>
+    </div>
 
-        </div>
+    <div id="hospitals"></div>
 
-        <!-- ================= RISK ================= -->
+  </div>
 
-        <div class="card risk-card">
+</div>
 
-            <div class="risk-location">
-                CURRENT AREA RISK
-            </div>
+<br>
 
-            <div class="risk-score-row">
+<!-- MAP -->
+<div class="card">
 
-                <div class="risk-score" id="riskScore">
-                    48
-                </div>
+  <div class="card-header">
 
-                <div class="risk-outof">
-                    / 100
-                </div>
+    <div>
+      <h3>🗺️ Live Risk Map</h3>
+      <p>Hyperlocal simulated risk zones</p>
+    </div>
 
-            </div>
+    <span class="demo">SIMULATED</span>
 
-            <div class="risk-status" id="riskStatus">
-                MONITOR
-            </div>
+  </div>
 
-            <div class="risk-bar">
-                <div class="risk-fill" id="riskFill"></div>
-            </div>
+  <div class="map">
 
-            <div class="risk-explanation" id="riskExplanation">
-                Rainfall conditions are being monitored.
-                Stay informed and review local safety instructions.
-            </div>
+    <div class="road r1"></div>
+    <div class="road r2"></div>
+    <div class="road r3"></div>
 
-        </div>
+    <div class="zone">
+      <span id="zoneText">YELLOW ZONE</span>
+    </div>
 
-        <br>
+    <div class="user-dot"></div>
 
-        <!-- ================= STATS ================= -->
+  </div>
 
-        <div class="grid grid-4">
+</div>
 
-            <div class="card stat-card">
+<br>
 
-                <div class="stat-top">
-                    <span class="stat-label">ACTIVE ALERTS</span>
-                    <div class="stat-icon">🚨</div>
-                </div>
+<!-- SIMULATION -->
+<div class="card simulation">
 
-                <div class="stat-value" id="activeAlerts">
-                    2
-                </div>
+  <div class="sim-head">
 
-                <div class="stat-description">
-                    Relevant to your area
-                </div>
+    <div>
+      <h3>⚡ SAFESETU Interactive Simulation</h3>
 
-            </div>
+      <p>
+        Demonstrate how changing hazard conditions
+        trigger coordinated preparedness actions.
+      </p>
+    </div>
 
-            <div class="card stat-card">
+    <button class="run" onclick="runSimulation()">
+      ▶ RUN FULL SIMULATION
+    </button>
 
-                <div class="stat-top">
-                    <span class="stat-label">RAINFALL</span>
-                    <div class="stat-icon">🌧️</div>
-                </div>
+  </div>
 
-                <div class="stat-value" id="rainfallStat">
-                    42 mm
-                </div>
+  <div class="slider">
 
-                <div class="stat-description">
-                    Simulated current reading
-                </div>
+    <label>
+      <span>Rainfall intensity</span>
+      <span id="rainValue">42 mm</span>
+    </label>
 
-            </div>
+    <input
+      id="rainSlider"
+      type="range"
+      min="20"
+      max="100"
+      value="42"
+      oninput="rainChanged()"
+    >
 
-            <div class="card stat-card">
+  </div>
 
-                <div class="stat-top">
-                    <span class="stat-label">NEARBY HELP</span>
-                    <div class="stat-icon">🏥</div>
-                </div>
+  <div class="stages">
 
-                <div class="stat-value">
-                    <span id="hospitalCount">3</span>
-                </div>
+    <div class="stage active" id="stage1">
+      <b>1. Hazard Signal</b>
+      <span>Rainfall signal detected</span>
+    </div>
 
-                <div class="stat-description">
-                    Prepared facilities nearby
-                </div>
+    <div class="stage" id="stage2">
+      <b>2. Risk Assessment</b>
+      <span>Risk score recalculated</span>
+    </div>
 
-            </div>
+    <div class="stage" id="stage3">
+      <b>3. Authority Approval</b>
+      <span>Preparedness recommendation generated</span>
+    </div>
 
-            <div class="card stat-card">
+    <div class="stage" id="stage4">
+      <b>4. Facility Trigger</b>
+      <span>Nearby facilities notified</span>
+    </div>
 
-                <div class="stat-top">
-                    <span class="stat-label">AQI</span>
-                    <div class="stat-icon">🌫️</div>
-                </div>
+  </div>
 
-                <div class="stat-value" id="aqiStat">
-                    82
-                </div>
+</div>
 
-                <div class="stat-description">
-                    Simulated environmental indicator
-                </div>
+<br>
 
-            </div>
+<!-- FACILITY + REPORT -->
+<div class="grid two">
 
-        </div>
+  <!-- FACILITY -->
+  <div class="card">
 
-        <br>
+    <div class="card-header">
 
-        <!-- ================= RISK + FACTORS ================= -->
+      <div>
+        <h3>🏥 Facility Readiness</h3>
+        <p>Simulated preparedness status</p>
+      </div>
 
-        <div class="grid grid-2">
+      <span class="demo">DEMO</span>
 
-            <div class="card">
+    </div>
 
-                <div class="card-title">
-                    <div>
-                        <h3>Risk Explanation</h3>
-                        <p>Transparent SAFESETU risk model</p>
-                    </div>
+    <div class="readiness">
+      <b>CityCare Hospital</b>
+      <span class="pill ready">READY</span>
+    </div>
 
-                    <span class="demo-label">DEMO MODEL</span>
-                </div>
+    <div class="readiness">
+      <b>Community Health Centre</b>
+      <span class="pill partial">PARTIALLY READY</span>
+    </div>
 
-                <div class="factor">
+    <div class="readiness">
+      <b>Emergency Shelter A</b>
+      <span class="pill ready">READY</span>
+    </div>
 
-                    <div class="factor-head">
-                        <span>Live Hazard</span>
-                        <span>40%</span>
-                    </div>
+    <div class="readiness" id="trigger">
+      <b>Readiness Trigger</b>
+      <span class="pill triggered">STANDBY</span>
+    </div>
 
-                    <div class="factor-bar">
-                        <div class="factor-fill" style="width:40%"></div>
-                    </div>
+  </div>
 
-                </div>
+  <!-- REPORT -->
+  <div class="card">
 
-                <div class="factor">
+    <div class="card-header">
 
-                    <div class="factor-head">
-                        <span>Historical Vulnerability</span>
-                        <span>25%</span>
-                    </div>
+      <div>
+        <h3>📝 Report Waterlogging</h3>
+        <p>Submit a simulated citizen incident report</p>
+      </div>
 
-                    <div class="factor-bar">
-                        <div class="factor-fill" style="width:25%"></div>
-                    </div>
+      <span class="demo">DEMO</span>
 
-                </div>
+    </div>
 
-                <div class="factor">
+    <form onsubmit="submitReport(event)">
 
-                    <div class="factor-head">
-                        <span>Population Vulnerability</span>
-                        <span>20%</span>
-                    </div>
+      <div class="form-group">
 
-                    <div class="factor-bar">
-                        <div class="factor-fill" style="width:20%"></div>
-                    </div>
+        <label>LOCATION</label>
 
-                </div>
+        <input
+          id="reportLocation"
+          value="Ward 12 — Shettihalli, Bengaluru"
+        >
 
-                <div class="factor">
+      </div>
 
-                    <div class="factor-head">
-                        <span>Facility Proximity</span>
-                        <span>15%</span>
-                    </div>
+      <div class="form-group">
 
-                    <div class="factor-bar">
-                        <div class="factor-fill" style="width:15%"></div>
-                    </div>
+        <label>INCIDENT TYPE</label>
 
-                </div>
+        <select>
+          <option>Waterlogging</option>
+          <option>Road blockage</option>
+          <option>Drain overflow</option>
+          <option>Other</option>
+        </select>
 
-            </div>
+      </div>
 
-            <!-- AQI -->
+      <div class="form-group">
 
-            <div class="card">
+        <label>DESCRIPTION</label>
 
-                <div class="card-title">
-                    <div>
-                        <h3>Air Quality</h3>
-                        <p id="aqiLocation">Current selected location</p>
-                    </div>
+        <textarea
+          placeholder="Describe the situation..."
+        ></textarea>
 
-                    <span class="demo-label">DEMO</span>
-                </div>
+      </div>
 
-                <div class="aqi-value" id="aqiValue">
-                    82
-                </div>
+      <button class="submit">
+        SUBMIT CITIZEN REPORT
+      </button>
 
-                <div class="aqi-label" id="aqiLabel">
-                    MODERATE
-                </div>
+    </form>
 
-                <div class="aqi-meta">
+  </div>
 
-                    <div>
-                        <small>PM2.5</small>
-                        <strong id="pm25">34 µg/m³</strong>
-                    </div>
+</div>
 
-                    <div>
-                        <small>PM10</small>
-                        <strong id="pm10">58 µg/m³</strong>
-                    </div>
+<div class="footer">
 
-                </div>
+  <span>
+    SafeSetu • Hyperlocal Disaster Alert & Readiness Platform
+  </span>
 
-            </div>
+  <span>
+    ⚠️ DEMO DATA — Not an official emergency warning
+  </span>
 
-        </div>
+</div>
 
-        <br>
-
-        <!-- ================= ALERTS + HOSPITALS ================= -->
-
-        <div class="grid grid-2">
-
-            <!-- ALERTS -->
-
-            <div class="card">
-
-                <div class="card-title">
-
-                    <div>
-                        <h3>Latest Alerts</h3>
-                        <p>Area-specific safety information</p>
-                    </div>
-
-                    <span class="demo-label">DEMO</span>
-
-                </div>
-
-                <div id="alertContainer">
-
-                    <div class="alert alert-warning">
-
-                        <div class="alert-icon">
-                            🌧️
-                        </div>
-
-                        <div>
-                            <h4>Flood Preparedness Advisory</h4>
-
-                            <p>
-                                Increased rainfall may lead to temporary
-                                waterlogging in low-lying areas.
-                                Keep essential items accessible.
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="alert alert-info">
-
-                        <div class="alert-icon">
-                            ℹ️
-                        </div>
-
-                        <div>
-                            <h4>Monitor Local Conditions</h4>
-
-                            <p>
-                                Follow verified government advisories
-                                for emergency instructions.
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- HOSPITALS -->
-
-            <div class="card">
-
-                <div class="card-title">
-
-                    <div>
-                        <h3>Nearby Hospitals</h3>
-                        <p>Prepared facilities near your location</p>
-                    </div>
-
-                    <span class="demo-label">DEMO</span>
-
-                </div>
-
-                <div id="hospitalContainer">
-
-                    <div class="hospital">
-
-                        <div class="hospital-icon">
-                            🏥
-                        </div>
-
-                        <div class="hospital-info">
-
-                            <h4>CityCare Hospital</h4>
-
-                            <p>
-                                1.8 km away • Emergency available
-                            </p>
-
-                            <p class="prepared">
-                                ● Prepared
-                            </p>
-
-                        </div>
-
-                        <button class="directions">
-                            Directions
-                        </button>
-
-                    </div>
-
-                    <div class="hospital">
-
-                        <div class="hospital-icon">
-                            🏥
-                        </div>
-
-                        <div class="hospital-info">
-
-                            <h4>North Bengaluru Medical Centre</h4>
-
-                            <p>
-                                3.2 km away • Emergency available
-                            </p>
-
-                            <p class="prepared">
-                                ● Prepared
-                            </p>
-
-                        </div>
-
-                        <button class="directions">
-                            Directions
-                        </button>
-
-                    </div>
-
-                    <div class="hospital">
-
-                        <div class="hospital-icon">
-                            🏥
-                        </div>
-
-                        <div class="hospital-info">
-
-                            <h4>Community Health Centre</h4>
-
-                            <p>
-                                4.7 km away • Limited capacity
-                            </p>
-
-                            <p style="color:#a56f00;font-weight:800;">
-                                ● Partially Ready
-                            </p>
-
-                        </div>
-
-                        <button class="directions">
-                            Directions
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <br>
-
-        <!-- ================= MAP ================= -->
-
-        <div class="card">
-
-            <div class="card-title">
-
-                <div>
-                    <h3>Live Risk Map</h3>
-                    <p>Hyperlocal simulated risk zones</p>
-                </div>
-
-                <span class="demo-label">
-                    SIMULATED
-                </span>
-
-            </div>
-
-            <div class="map">
-
-                <div class="map-road road1"></div>
-                <div class="map-road road2"></div>
-                <div class="map-road road3"></div>
-
-                <div class="map-zone">
-                    <span id="mapRisk">
-                        ORANGE ZONE
-                    </span>
-                </div>
-
-                <div class="map-user"></div>
-
-                <div class="map-label">
-                    📍 <span id="mapLocation">Ward 12 — Shettihalli</span>
-                </div>
-
-            </div>
-
-        </div>
-
-        <br>
-
-        <!-- ================= SIMULATION ================= -->
-
-        <div class="card simulation">
-
-            <div class="sim-header">
-
-                <div>
-                    <h3>SAFESETU Interactive Demo</h3>
-
-                    <p>
-                        Simulate changing rainfall conditions and
-                        observe how SAFESETU coordinates preparedness.
-                    </p>
-                </div>
-
-                <button class="sim-btn" onclick="runSimulation()">
-                    ▶ Run Full Simulation
-                </button>
-
-            </div>
-
-            <div class="slider-area">
-
-                <label>
-                    <span>Rainfall intensity</span>
-                    <span id="rainfallValue">42 mm</span>
-                </label>
-
-                <input
-                    type="range"
-                    id="rainfallSlider"
-                    min="20"
-                    max="100"
-                    value="42"
-                    oninput="manualSimulation()"
-                >
-
-            </div>
-
-            <div class="sim-stages">
-
-                <div class="stage active" id="stage1">
-                    <strong>1. Hazard Signal</strong>
-                    <span>
-                        Rainfall signal detected
-                    </span>
-                </div>
-
-                <div class="stage" id="stage2">
-                    <strong>2. Risk Assessment</strong>
-                    <span>
-                        Risk score recalculated
-                    </span>
-                </div>
-
-                <div class="stage" id="stage3">
-                    <strong>3. Authority Approval</strong>
-                    <span>
-                        Preparedness alert sent for approval
-                    </span>
-                </div>
-
-                <div class="stage" id="stage4">
-                    <strong>4. Facility Trigger</strong>
-                    <span>
-                        Nearby facilities notified
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-
-        <br>
-
-        <!-- ================= FACILITY READINESS ================= -->
-
-        <div class="grid grid-2">
-
-            <div class="card">
-
-                <div class="card-title">
-
-                    <div>
-                        <h3>Nearby Facility Readiness</h3>
-                        <p>Simulated preparedness status</p>
-                    </div>
-
-                    <span class="demo-label">DEMO</span>
-
-                </div>
-
-                <div class="readiness-item">
-
-                    <strong>CityCare Hospital</strong>
-
-                    <span class="status-pill status-ready">
-                        READY
-                    </span>
-
-                </div>
-
-                <div class="readiness-item">
-
-                    <strong>Community Health Centre</strong>
-
-                    <span class="status-pill status-partial">
-                        PARTIALLY READY
-                    </span>
-
-                </div>
-
-                <div class="readiness-item">
-
-                    <strong>Emergency Shelter A</strong>
-
-                    <span class="status-pill status-ready">
-                        READY
-                    </span>
-
-                </div>
-
-                <div class="readiness-item" id="triggerStatus">
-
-                    <strong>Readiness Trigger</strong>
-
-                    <span class="status-pill status-alert">
-                        STANDBY
-                    </span>
-
-                </div>
-
-            </div>
-
-            <!-- REPORT -->
-
-            <div class="card">
-
-                <div class="card-title">
-
-                    <div>
-                        <h3>Report Waterlogging</h3>
-                        <p>Help authorities understand local conditions</p>
-                    </div>
-
-                    <span class="demo-label">DEMO</span>
-
-                </div>
-
-                <form onsubmit="submitReport(event)">
-
-                    <div class="form-group">
-
-                        <label>Location</label>
-
-                        <input
-                            type="text"
-                            id="reportLocation"
-                            value="Ward 12 — Shettihalli, Bengaluru"
-                        >
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Incident type</label>
-
-                        <select>
-                            <option>Waterlogging</option>
-                            <option>Road blockage</option>
-                            <option>Drain overflow</option>
-                            <option>Other</option>
-                        </select>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Description</label>
-
-                        <textarea placeholder="Describe the situation..."></textarea>
-
-                    </div>
-
-                    <button class="submit-btn">
-                        Submit Citizen Report
-                    </button>
-
-                </form>
-
-            </div>
-
-        </div>
-
-        <!-- ================= FOOTER ================= -->
-
-        <footer class="footer">
-
-            <div>
-                SafeSetu • Hyperlocal disaster alert & readiness platform
-            </div>
-
-            <div>
-                ⚠️ DEMO DATA • Not an official emergency warning
-            </div>
-
-        </footer>
-
-    </section>
+</section>
 
 </main>
 
 </div>
 
-<!-- ================= MOBILE NAV ================= -->
-
+<!-- MOBILE NAV -->
 <div class="bottom-nav">
 
-    <button>
-        <span>⌂</span>
-        Home
-    </button>
-
-    <button>
-        <span>◉</span>
-        Risk Map
-    </button>
-
-    <button>
-        <span>!</span>
-        Alerts
-    </button>
-
-    <button>
-        <span>🏥</span>
-        Help
-    </button>
-
-    <button>
-        <span>✎</span>
-        Report
-    </button>
+  <button>🏠<span>Home</span></button>
+  <button>🗺️<span>Risk Map</span></button>
+  <button>🚨<span>Alerts</span></button>
+  <button>🏥<span>Help</span></button>
+  <button>📝<span>Report</span></button>
 
 </div>
 
-
 <script>
 
-/* =========================================================
-   SAFESETU DEMO DATA
-========================================================= */
+/* =====================================================
+   SAFESETU LOCATION DATA
+===================================================== */
 
-const locations = {
+const data = {
 
-    bengaluru: {
-        name: "Ward 12 — Shettihalli, Bengaluru",
-        subtitle: "Ward 12 • Shettihalli • Bengaluru • DEMO DATA",
-        risk: 48,
-        rainfall: 42,
-        aqi: 82,
-        pm25: "34 µg/m³",
-        pm10: "58 µg/m³",
-        hospitals: [
-            ["CityCare Hospital","1.8 km away • Emergency available","Prepared"],
-            ["North Bengaluru Medical Centre","3.2 km away • Emergency available","Prepared"],
-            ["Community Health Centre","4.7 km away • Limited capacity","Partially Ready"]
-        ]
-    },
+  bengaluru:{
+    name:"Ward 12 — Shettihalli, Bengaluru",
+    subtitle:"Ward 12 • Shettihalli • Bengaluru • DEMO DATA",
+    risk:48,
+    rainfall:42,
+    aqi:82,
+    pm25:"34 µg/m³",
+    pm10:"58 µg/m³",
+    hospitals:[
+      ["CityCare Hospital","1.8 km • Emergency available","READY"],
+      ["North Bengaluru Medical Centre","3.2 km • Emergency available","READY"],
+      ["Community Health Centre","4.7 km • Limited capacity","PARTIALLY READY"]
+    ]
+  },
 
-    jaipur: {
-        name: "Jaipur — Rajasthan",
-        subtitle: "Jaipur • Rajasthan • DEMO DATA",
-        risk: 36,
-        rainfall: 27,
-        aqi: 96,
-        pm25: "42 µg/m³",
-        pm10: "74 µg/m³",
-        hospitals: [
-            ["Jaipur City Hospital","2.1 km away • Emergency available","Prepared"],
-            ["Rajasthan Medical Centre","3.7 km away • Emergency available","Prepared"],
-            ["Community Health Centre","5.2 km away • Limited capacity","Partially Ready"]
-        ]
-    },
+  jaipur:{
+    name:"Jaipur — Rajasthan",
+    subtitle:"Jaipur • Rajasthan • DEMO DATA",
+    risk:36,
+    rainfall:27,
+    aqi:96,
+    pm25:"42 µg/m³",
+    pm10:"74 µg/m³",
+    hospitals:[
+      ["Jaipur City Hospital","2.1 km • Emergency available","READY"],
+      ["Rajasthan Medical Centre","3.7 km • Emergency available","READY"],
+      ["Community Health Centre","5.2 km • Limited capacity","PARTIALLY READY"]
+    ]
+  },
 
-    delhi: {
-        name: "Delhi — Delhi NCR",
-        subtitle: "Delhi • Delhi NCR • DEMO DATA",
-        risk: 52,
-        rainfall: 39,
-        aqi: 118,
-        pm25: "61 µg/m³",
-        pm10: "96 µg/m³",
-        hospitals: [
-            ["Central Delhi Hospital","1.6 km away • Emergency available","Prepared"],
-            ["Metro Medical Centre","2.9 km away • Emergency available","Prepared"],
-            ["Community Health Centre","4.3 km away • Limited capacity","Partially Ready"]
-        ]
-    },
+  delhi:{
+    name:"Delhi — Delhi NCR",
+    subtitle:"Delhi • Delhi NCR • DEMO DATA",
+    risk:52,
+    rainfall:39,
+    aqi:118,
+    pm25:"61 µg/m³",
+    pm10:"96 µg/m³",
+    hospitals:[
+      ["Central Delhi Hospital","1.6 km • Emergency available","READY"],
+      ["Metro Medical Centre","2.9 km • Emergency available","READY"],
+      ["Community Health Centre","4.3 km • Limited capacity","PARTIALLY READY"]
+    ]
+  },
 
-    guwahati: {
-        name: "Guwahati — Assam",
-        subtitle: "Guwahati • Assam • DEMO DATA",
-        risk: 44,
-        rainfall: 51,
-        aqi: 67,
-        pm25: "29 µg/m³",
-        pm10: "48 µg/m³",
-        hospitals: [
-            ["Guwahati Medical Centre","1.9 km away • Emergency available","Prepared"],
-            ["Assam City Hospital","3.1 km away • Emergency available","Prepared"],
-            ["Community Health Centre","4.8 km away • Limited capacity","Partially Ready"]
-        ]
-    }
+  guwahati:{
+    name:"Guwahati — Assam",
+    subtitle:"Guwahati • Assam • DEMO DATA",
+    risk:44,
+    rainfall:51,
+    aqi:67,
+    pm25:"29 µg/m³",
+    pm10:"48 µg/m³",
+    hospitals:[
+      ["Guwahati Medical Centre","1.9 km • Emergency available","READY"],
+      ["Assam City Hospital","3.1 km • Emergency available","READY"],
+      ["Community Health Centre","4.8 km • Limited capacity","PARTIALLY READY"]
+    ]
+  }
 
 };
 
-let currentLocationKey = "bengaluru";
 
-
-/* =========================================================
+/* =====================================================
    CHANGE LOCATION
-========================================================= */
+===================================================== */
 
-function changeLocation() {
+function changeLocation(){
 
-    const select =
-        document.getElementById("locationSelect");
+  const key =
+    document.getElementById("locationSelect").value;
 
-    currentLocationKey = select.value;
+  const d = data[key];
 
-    const data = locations[currentLocationKey];
+  document.getElementById("locationName").textContent =
+    d.name;
 
-    document.getElementById("currentLocation").textContent =
-        data.name;
+  document.getElementById("subtitle").textContent =
+    d.subtitle;
 
-    document.getElementById("locationSubtitle").textContent =
-        data.subtitle;
+  document.getElementById("aqiLocation").textContent =
+    d.name;
 
-    document.getElementById("reportLocation").value =
-        data.name;
+  document.getElementById("aqi").textContent =
+    d.aqi;
 
-    document.getElementById("mapLocation").textContent =
-        data.name;
+  document.getElementById("aqiStat").textContent =
+    d.aqi;
 
-    document.getElementById("aqiLocation").textContent =
-        data.name;
+  document.getElementById("pm25").textContent =
+    d.pm25;
 
-    document.getElementById("aqiValue").textContent =
-        data.aqi;
+  document.getElementById("pm10").textContent =
+    d.pm10;
 
-    document.getElementById("aqiStat").textContent =
-        data.aqi;
+  document.getElementById("rainfall").textContent =
+    d.rainfall + " mm";
 
-    document.getElementById("pm25").textContent =
-        data.pm25;
+  document.getElementById("rainValue").textContent =
+    d.rainfall + " mm";
 
-    document.getElementById("pm10").textContent =
-        data.pm10;
+  document.getElementById("rainSlider").value =
+    d.rainfall;
 
-    document.getElementById("rainfallStat").textContent =
-        data.rainfall + " mm";
+  document.getElementById("reportLocation").value =
+    d.name;
 
-    document.getElementById("rainfallValue").textContent =
-        data.rainfall + " mm";
+  updateAQI(d.aqi);
 
-    document.getElementById("rainfallSlider").value =
-        data.rainfall;
+  updateRisk(d.risk);
 
-    updateAQILabel(data.aqi);
-
-    renderHospitals(data.hospitals);
-
-    updateRisk(data.risk);
+  renderHospitals(d.hospitals);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    HOSPITALS
-========================================================= */
+===================================================== */
 
-function renderHospitals(hospitals) {
+function renderHospitals(list){
 
-    const container =
-        document.getElementById("hospitalContainer");
+  const box =
+    document.getElementById("hospitals");
 
-    container.innerHTML = "";
+  box.innerHTML="";
 
-    hospitals.forEach((hospital) => {
+  list.forEach(h=>{
 
-        const statusColor =
-            hospital[2] === "Prepared"
-            ? "var(--green)"
-            : "#a56f00";
+    const partial =
+      h[2] !== "READY";
 
-        container.innerHTML += `
+    box.innerHTML += `
 
-            <div class="hospital">
+      <div class="hospital">
 
-                <div class="hospital-icon">
-                    🏥
-                </div>
+        <div class="hospital-icon">🏥</div>
 
-                <div class="hospital-info">
+        <div class="hospital-info">
 
-                    <h4>${hospital[0]}</h4>
+          <h4>${h[0]}</h4>
 
-                    <p>${hospital[1]}</p>
+          <p>${h[1]}</p>
 
-                    <p style="
-                        color:${statusColor};
-                        font-weight:800;
-                    ">
-                        ● ${hospital[2]}
-                    </p>
+          <p class="${partial ? "partial":"ready"}">
+            ● ${h[2]}
+          </p>
 
-                </div>
+        </div>
 
-                <button
-                    class="directions"
-                    onclick="showDirections('${hospital[0]}')"
-                >
-                    Directions
-                </button>
+        <button
+          class="direction"
+          onclick="directions('${h[0]}')"
+        >
+          MAP
+        </button>
 
-            </div>
+      </div>
 
-        `;
+    `;
 
-    });
-
-    document.getElementById("hospitalCount").textContent =
-        hospitals.length;
-}
-
-
-/* =========================================================
-   DIRECTIONS DEMO
-========================================================= */
-
-function showDirections(name) {
-
-    alert(
-        "DEMO MODE\n\nDirections requested for:\n" +
-        name +
-        "\n\nIn the production version, this button can open a trusted mapping service."
-    );
+  });
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   DIRECTIONS
+===================================================== */
+
+function directions(name){
+
+  alert(
+    "DEMO MODE\n\n" +
+    "Opening directions for:\n" +
+    name +
+    "\n\n" +
+    "A production version can connect this button to a mapping service."
+  );
+
+}
+
+
+/* =====================================================
    AQI
-========================================================= */
+===================================================== */
 
-function updateAQILabel(aqi) {
+function updateAQI(value){
 
-    const label =
-        document.getElementById("aqiLabel");
+  const status =
+    document.getElementById("aqiStatus");
 
-    if (aqi <= 50) {
+  if(value <= 50){
 
-        label.textContent = "GOOD";
+    status.textContent="GOOD";
 
-    } else if (aqi <= 100) {
+  }else if(value <= 100){
 
-        label.textContent = "MODERATE";
+    status.textContent="MODERATE";
 
-    } else if (aqi <= 150) {
+  }else if(value <= 150){
 
-        label.textContent = "UNHEALTHY FOR SENSITIVE GROUPS";
+    status.textContent="UNHEALTHY FOR SENSITIVE GROUPS";
 
-    } else {
+  }else{
 
-        label.textContent = "UNHEALTHY";
+    status.textContent="UNHEALTHY";
 
-    }
-
-}
-
-
-/* =========================================================
-   RISK SCORE
-========================================================= */
-
-function updateRisk(score) {
-
-    const scoreElement =
-        document.getElementById("riskScore");
-
-    const status =
-        document.getElementById("riskStatus");
-
-    const fill =
-        document.getElementById("riskFill");
-
-    const explanation =
-        document.getElementById("riskExplanation");
-
-    const mapRisk =
-        document.getElementById("mapRisk");
-
-    scoreElement.textContent = score;
-
-    fill.style.width = score + "%";
-
-    status.classList.remove("orange");
-
-    if (score < 40) {
-
-        status.textContent = "LOW";
-        status.style.background =
-            "rgba(32,165,107,.18)";
-        status.style.color = "#56d49a";
-
-        fill.style.background =
-            "#20a56b";
-
-        mapRisk.textContent =
-            "LOW ZONE";
-
-        explanation.textContent =
-            "Current indicators remain relatively stable. Continue monitoring official updates.";
-
-    }
-
-    else if (score < 60) {
-
-        status.textContent = "MONITOR";
-        status.style.background =
-            "rgba(229,164,0,.18)";
-        status.style.color = "#ffbf42";
-
-        fill.style.background =
-            "#e5a400";
-
-        mapRisk.textContent =
-            "YELLOW ZONE";
-
-        explanation.textContent =
-            "Rainfall conditions are being monitored. Stay informed and review local safety instructions.";
-
-    }
-
-    else if (score < 80) {
-
-        status.textContent = "PREPARE";
-        status.classList.add("orange");
-
-        fill.style.background =
-            "#ef7c21";
-
-        mapRisk.textContent =
-            "ORANGE ZONE";
-
-        explanation.textContent =
-            "Elevated hazard indicators detected. Prepare essential items and monitor verified local advisories.";
-
-    }
-
-    else {
-
-        status.textContent = "ACT";
-        status.style.background =
-            "rgba(220,61,72,.2)";
-        status.style.color = "#ff747e";
-
-        fill.style.background =
-            "#dc3d48";
-
-        mapRisk.textContent =
-            "HIGH RISK";
-
-        explanation.textContent =
-            "High simulated risk level. Follow official emergency instructions and move to designated safe locations if instructed.";
-
-    }
+  }
 
 }
 
 
-/* =========================================================
-   MANUAL RAINFALL SIMULATION
-========================================================= */
+/* =====================================================
+   RISK
+===================================================== */
 
-function manualSimulation() {
+function updateRisk(score){
 
-    const rainfall =
-        Number(
-            document.getElementById("rainfallSlider").value
-        );
+  document.getElementById("riskScore").textContent =
+    score;
 
-    document.getElementById("rainfallValue").textContent =
-        rainfall + " mm";
+  document.getElementById("riskFill").style.width =
+    score + "%";
 
-    document.getElementById("rainfallStat").textContent =
-        rainfall + " mm";
+  const status =
+    document.getElementById("riskStatus");
 
-    let score;
+  const zone =
+    document.getElementById("zoneText");
 
-    if (rainfall <= 45) {
+  const text =
+    document.getElementById("riskText");
 
-        score = 48;
+  if(score < 40){
 
-    } else {
+    status.textContent="LOW";
+    status.style.color="#54d598";
+    status.style.background="rgba(24,166,106,.18)";
 
-        score = Math.min(
-            72,
-            48 + Math.round((rainfall - 45) * .9)
-        );
+    document.getElementById("riskFill").style.background =
+      "#18a66a";
 
-    }
+    zone.textContent="LOW ZONE";
 
-    updateRisk(score);
+    text.textContent =
+      "Current indicators remain relatively stable. Continue monitoring official updates.";
 
-    if (rainfall > 60) {
+  }
 
-        activateStages(4);
+  else if(score < 60){
 
-    } else if (rainfall > 50) {
+    status.textContent="MONITOR";
+    status.style.color="#ffc940";
+    status.style.background="rgba(227,160,0,.18)";
 
-        activateStages(2);
+    document.getElementById("riskFill").style.background =
+      "#e3a000";
 
-    } else {
+    zone.textContent="YELLOW ZONE";
 
-        activateStages(1);
+    text.textContent =
+      "Rainfall conditions are being monitored. Stay informed and review verified local advisories.";
 
-    }
+  }
+
+  else if(score < 80){
+
+    status.textContent="PREPARE";
+    status.style.color="#ff9c59";
+    status.style.background="rgba(237,120,32,.18)";
+
+    document.getElementById("riskFill").style.background =
+      "#ed7820";
+
+    zone.textContent="ORANGE ZONE";
+
+    text.textContent =
+      "Elevated hazard indicators detected. Prepare essential items and monitor verified local advisories.";
+
+  }
+
+  else{
+
+    status.textContent="ACT";
+    status.style.color="#ff777f";
+    status.style.background="rgba(217,61,75,.18)";
+
+    document.getElementById("riskFill").style.background =
+      "#d93d4b";
+
+    zone.textContent="HIGH RISK";
+
+    text.textContent =
+      "High simulated risk level. Follow official emergency instructions.";
+
+  }
 
 }
 
 
-/* =========================================================
-   FULL SIMULATION
-========================================================= */
+/* =====================================================
+   RAINFALL SLIDER
+===================================================== */
 
-function runSimulation() {
+function rainChanged(){
 
-    const slider =
-        document.getElementById("rainfallSlider");
+  const rain =
+    Number(document.getElementById("rainSlider").value);
 
-    const rainfallValue =
-        document.getElementById("rainfallValue");
+  document.getElementById("rainValue").textContent =
+    rain + " mm";
 
-    const rainfallStat =
-        document.getElementById("rainfallStat");
+  document.getElementById("rainfall").textContent =
+    rain + " mm";
+
+  let score;
+
+  if(rain <= 45){
+
+    score=48;
+
+  }else{
+
+    score =
+      Math.min(
+        72,
+        48 + Math.round((rain-45)*0.9)
+      );
+
+  }
+
+  updateRisk(score);
+
+  if(rain > 60){
+
+    activateStages(4);
+
+  }else if(rain > 50){
+
+    activateStages(2);
+
+  }else{
 
     activateStages(1);
 
-    slider.value = 42;
-
-    rainfallValue.textContent =
-        "42 mm";
-
-    rainfallStat.textContent =
-        "42 mm";
-
-    updateRisk(48);
-
-    setTimeout(() => {
-
-        activateStages(2);
-
-        slider.value = 72;
-
-        rainfallValue.textContent =
-            "72 mm";
-
-        rainfallStat.textContent =
-            "72 mm";
-
-        updateRisk(72);
-
-    }, 1200);
-
-
-    setTimeout(() => {
-
-        activateStages(3);
-
-        addApprovalAlert();
-
-    }, 2400);
-
-
-    setTimeout(() => {
-
-        activateStages(4);
-
-        triggerFacilities();
-
-    }, 3600);
+  }
 
 }
 
 
-/* =========================================================
-   STAGES
-========================================================= */
+/* =====================================================
+   FULL SIMULATION
+===================================================== */
 
-function activateStages(number) {
+function runSimulation(){
 
-    for(let i = 1; i <= 4; i++) {
+  const slider =
+    document.getElementById("rainSlider");
 
-        const stage =
-            document.getElementById("stage" + i);
+  slider.value=42;
 
-        if(i <= number) {
+  document.getElementById("rainValue").textContent =
+    "42 mm";
 
-            stage.classList.add("active");
+  document.getElementById("rainfall").textContent =
+    "42 mm";
 
-        } else {
+  updateRisk(48);
 
-            stage.classList.remove("active");
+  activateStages(1);
 
-        }
+  setTimeout(()=>{
 
-    }
+    slider.value=72;
 
-}
+    document.getElementById("rainValue").textContent =
+      "72 mm";
+
+    document.getElementById("rainfall").textContent =
+      "72 mm";
+
+    updateRisk(72);
+
+    activateStages(2);
+
+  },1200);
 
 
-/* =========================================================
-   AUTHORITY APPROVAL
-========================================================= */
+  setTimeout(()=>{
 
-function addApprovalAlert() {
+    activateStages(3);
 
-    const container =
-        document.getElementById("alertContainer");
+    addApprovalAlert();
 
-    const existing =
-        document.getElementById("approvalAlert");
+  },2400);
 
-    if(existing) return;
 
-    const alert =
-        document.createElement("div");
+  setTimeout(()=>{
 
-    alert.className =
-        "alert alert-info";
+    activateStages(4);
 
-    alert.id =
-        "approvalAlert";
+    triggerFacility();
 
-    alert.innerHTML = `
-
-        <div class="alert-icon">
-            🏛️
-        </div>
-
-        <div>
-
-            <h4>
-                Authority Approval Request
-            </h4>
-
-            <p>
-                SAFESETU has generated a simulated
-                preparedness recommendation for the
-                selected area. Authority review required
-                before escalation.
-            </p>
-
-        </div>
-
-    `;
-
-    container.prepend(alert);
+  },3600);
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   SIMULATION STAGES
+===================================================== */
+
+function activateStages(number){
+
+  for(let i=1;i<=4;i++){
+
+    document
+      .getElementById("stage"+i)
+      .classList.toggle(
+        "active",
+        i<=number
+      );
+
+  }
+
+}
+
+
+/* =====================================================
+   APPROVAL ALERT
+===================================================== */
+
+function addApprovalAlert(){
+
+  if(document.getElementById("approvalAlert"))
+    return;
+
+  const box =
+    document.getElementById("alerts");
+
+  const alert =
+    document.createElement("div");
+
+  alert.id="approvalAlert";
+
+  alert.className="alert info";
+
+  alert.innerHTML=`
+
+    <div class="alert-icon">🏛️</div>
+
+    <div>
+
+      <h4>Authority Approval Request</h4>
+
+      <p>
+        SAFESETU generated a simulated preparedness
+        recommendation for the selected area.
+        Authority review is required.
+      </p>
+
+    </div>
+
+  `;
+
+  box.prepend(alert);
+
+}
+
+
+/* =====================================================
    FACILITY TRIGGER
-========================================================= */
+===================================================== */
 
-function triggerFacilities() {
+function triggerFacility(){
 
-    const trigger =
-        document.getElementById("triggerStatus");
+  const trigger =
+    document.getElementById("trigger");
 
-    trigger.innerHTML = `
+  trigger.innerHTML=`
 
-        <strong>
-            Readiness Trigger
-        </strong>
+    <b>Readiness Trigger</b>
 
-        <span
-            class="status-pill status-alert"
-        >
-            TRIGGERED
-        </span>
+    <span class="pill triggered">
+      TRIGGERED
+    </span>
 
-    `;
+  `;
 
-    const container =
-        document.getElementById("alertContainer");
+  if(document.getElementById("facilityAlert"))
+    return;
 
-    const existing =
-        document.getElementById("facilityAlert");
+  const box =
+    document.getElementById("alerts");
 
-    if(existing) return;
+  const alert =
+    document.createElement("div");
 
-    const alert =
-        document.createElement("div");
+  alert.id="facilityAlert";
 
-    alert.className =
-        "alert alert-warning";
+  alert.className="alert warning";
 
-    alert.id =
-        "facilityAlert";
+  alert.innerHTML=`
 
-    alert.innerHTML = `
+    <div class="alert-icon">🏥</div>
 
-        <div class="alert-icon">
-            🏥
-        </div>
+    <div>
 
-        <div>
+      <h4>Facility Readiness Trigger</h4>
 
-            <h4>
-                Facility Readiness Trigger
-            </h4>
+      <p>
+        Nearby demo facilities have received
+        simulated preparedness triggers.
+      </p>
 
-            <p>
-                Nearby demo facilities have received
-                simulated preparedness triggers.
-            </p>
+    </div>
 
-        </div>
+  `;
 
-    `;
-
-    container.prepend(alert);
+  box.prepend(alert);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    REPORT
-========================================================= */
+===================================================== */
 
-function submitReport(event) {
+function submitReport(event){
 
-    event.preventDefault();
+  event.preventDefault();
 
-    alert(
-        "Citizen report submitted successfully.\n\n" +
-        "DEMO MODE: This report is stored only in the prototype."
-    );
+  alert(
+    "Citizen report submitted.\n\n" +
+    "DEMO MODE: No real emergency report has been sent."
+  );
 
 }
 
 
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
+/* =====================================================
+   START
+===================================================== */
 
 changeLocation();
 
