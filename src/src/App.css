@@ -1,0 +1,822 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: #07101c;
+  color: #f4f7fb;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.app {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(26, 91, 140, .22), transparent 30%),
+    #07101c;
+}
+
+/* NAVBAR */
+
+.navbar {
+  height: 76px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  background: rgba(7,16,28,.82);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandIcon {
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #16c79a, #087f78);
+  box-shadow: 0 8px 30px rgba(22,199,154,.2);
+}
+
+.brand h2 {
+  font-family: "Space Grotesk";
+  font-size: 19px;
+  letter-spacing: 1px;
+}
+
+.brand span {
+  color: #7d8b9b;
+  font-size: 10px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navLinks a {
+  color: #8491a0;
+  font-size: 14px;
+}
+
+.navLinks .active {
+  color: white;
+}
+
+.navLinks button,
+.mobileMenu button {
+  background: #13b890;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-weight: 600;
+}
+
+.menuBtn {
+  display: none;
+  background: transparent;
+  color: white;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+/* MAIN */
+
+main {
+  width: min(1250px, 88%);
+  margin: auto;
+}
+
+.hero {
+  min-height: 510px;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #9ba9b8;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.live {
+  color: #22d3a3;
+  margin-left: 8px;
+  font-size: 10px;
+}
+
+h1 {
+  font-family: "Space Grotesk";
+  font-size: clamp(45px, 6vw, 76px);
+  line-height: .98;
+  letter-spacing: -3px;
+  margin-bottom: 24px;
+}
+
+h1 span {
+  color: #18c99e;
+}
+
+.hero p {
+  max-width: 620px;
+  color: #8998a8;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.primary,
+.secondary {
+  padding: 13px 19px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.primary {
+  background: #13b890;
+  color: white;
+}
+
+.secondary {
+  background: #101d2c;
+  color: #cbd5df;
+  border: 1px solid #223346;
+}
+
+/* RISK */
+
+.riskCard {
+  padding: 28px;
+  border-radius: 24px;
+  background: linear-gradient(145deg,#101e2d,#0b1724);
+  border: 1px solid #263747;
+  box-shadow: 0 25px 80px rgba(0,0,0,.3);
+}
+
+.riskCard.danger {
+  border-color: rgba(255,82,82,.35);
+}
+
+.riskTop {
+  display: flex;
+  justify-content: space-between;
+  color: #8795a5;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+}
+
+.riskNumber {
+  font-family: "Space Grotesk";
+  font-size: 86px;
+  font-weight: 700;
+  margin-top: 25px;
+}
+
+.riskNumber small {
+  font-size: 20px;
+  color: #677687;
+}
+
+.riskStatus {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.dot.danger {
+  background: #ff5757;
+  box-shadow: 0 0 15px #ff5757;
+}
+
+.dot.warning {
+  background: #f7bd4f;
+}
+
+.dot.safe {
+  background: #21c999;
+}
+
+.progress {
+  height: 7px;
+  background: #1c2a38;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0 25px;
+}
+
+.progress div {
+  height: 100%;
+  background: linear-gradient(90deg,#20c79d,#ff5a5a);
+  border-radius: inherit;
+  transition: width .5s ease;
+}
+
+.riskFactors {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid #223142;
+  padding-top: 18px;
+  gap: 10px;
+}
+
+.riskFactors span {
+  display: block;
+  color: #697888;
+  font-size: 10px;
+}
+
+.riskFactors b {
+  font-size: 18px;
+}
+
+/* ALERT */
+
+.alertBanner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid rgba(255,80,80,.25);
+  background: rgba(255,60,60,.07);
+  border-radius: 16px;
+  margin-bottom: 30px;
+}
+
+.alertIcon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,75,75,.12);
+  color: #ff6262;
+  border-radius: 12px;
+}
+
+.alertText {
+  flex: 1;
+}
+
+.alertText span,
+.eyebrow {
+  color: #f56a6a;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  font-weight: 700;
+}
+
+.alertText h3 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.alertText p {
+  color: #8492a1;
+  font-size: 12px;
+}
+
+.alertBanner button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  color: #ff7777;
+  font-weight: 600;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1.55fr .75fr;
+  gap: 20px;
+}
+
+.panel {
+  background: #0c1826;
+  border: 1px solid #1d2d3e;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.panelHeader {
+  padding: 22px 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panelHeader h2,
+.sectionHeading h2 {
+  font-family: "Space Grotesk";
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.panelHeader > svg {
+  color: #22cda4;
+}
+
+.mapLegend {
+  display: flex;
+  gap: 10px;
+  font-size: 10px;
+  color: #7e8c9a;
+}
+
+.mapLegend i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+.red { background: #ff5757; }
+.yellow { background: #e7b34b; }
+.green { background: #22c79d; }
+
+.fakeMap {
+  height: 340px;
+  position: relative;
+  overflow: hidden;
+  background: #101e2a;
+}
+
+.mapGrid {
+  position: absolute;
+  inset: 0;
+  opacity: .35;
+  background-image:
+    linear-gradient(#263b4a 1px, transparent 1px),
+    linear-gradient(90deg,#263b4a 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: rotate(-8deg) scale(1.2);
+}
+
+.zone {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.zone1 {
+  width: 260px;
+  height: 220px;
+  left: 15%;
+  top: 25%;
+  background: rgba(255,65,65,.25);
+}
+
+.zone2 {
+  width: 190px;
+  height: 170px;
+  right: 5%;
+  top: 5%;
+  background: rgba(255,184,60,.2);
+}
+
+.zone3 {
+  width: 160px;
+  height: 130px;
+  right: 30%;
+  bottom: -30px;
+  background: rgba(20,201,157,.17);
+}
+
+.mapPin {
+  position: absolute;
+  color: #ff6262;
+  left: 43%;
+  top: 45%;
+  filter: drop-shadow(0 0 12px #ff5757);
+}
+
+.mapLabel {
+  position: absolute;
+  left: 48%;
+  top: 42%;
+  padding: 9px 13px;
+  border-radius: 8px;
+  background: rgba(7,16,28,.88);
+  border: 1px solid #344656;
+}
+
+.mapLabel b,
+.mapLabel span {
+  display: block;
+}
+
+.mapLabel b {
+  font-size: 11px;
+}
+
+.mapLabel span {
+  color: #ff6868;
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+.facilityPin {
+  position: absolute;
+  padding: 7px;
+  border-radius: 50%;
+  background: #0d1825;
+  border: 1px solid #2b4558;
+  color: #27cba4;
+}
+
+.facility1 {
+  left: 25%;
+  bottom: 22%;
+}
+
+.facility2 {
+  right: 22%;
+  top: 25%;
+}
+
+.mapControls {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapControls button {
+  width: 32px;
+  height: 32px;
+  background: #101e2b;
+  color: white;
+  border-bottom: 1px solid #314252;
+}
+
+/* SIGNALS */
+
+.statusPanel {
+  padding-bottom: 15px;
+}
+
+.signal {
+  margin: 0 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #1c2a38;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.signalIcon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+}
+
+.signalIcon svg {
+  width: 18px;
+}
+
+.greenBg {
+  color: #23c99d;
+  background: rgba(23,200,157,.1);
+}
+
+.blueBg {
+  color: #4da8ff;
+  background: rgba(77,168,255,.1);
+}
+
+.purpleBg {
+  color: #b188ff;
+  background: rgba(177,136,255,.1);
+}
+
+.signal b,
+.signal span {
+  display: block;
+}
+
+.signal b {
+  font-size: 12px;
+}
+
+.signal span {
+  color: #667687;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.online {
+  width: 7px;
+  height: 7px;
+  background: #22c99c;
+  border-radius: 50%;
+  margin-left: auto;
+}
+
+.offline {
+  margin: 18px 20px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: #111f2d;
+  color: #8796a5;
+  font-size: 10px;
+}
+
+.offline span {
+  color: #20c99b;
+  margin-right: 5px;
+}
+
+/* FACILITIES */
+
+.facilitiesSection {
+  padding: 50px 0 100px;
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  color: #22c99d;
+}
+
+.viewAll {
+  background: transparent;
+  color: #7e8c9b;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.facilityGrid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+}
+
+.facilityCard {
+  padding: 19px;
+  background: #0c1826;
+  border: 1px solid #1d2d3e;
+  border-radius: 14px;
+  display: flex;
+  gap: 13px;
+}
+
+.facilityIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(22,199,154,.09);
+  color: #22c99d;
+}
+
+.facilityIcon svg {
+  width: 19px;
+}
+
+.facilityInfo > span {
+  color: #657585;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.facilityInfo h3 {
+  font-size: 13px;
+  margin: 3px 0 10px;
+}
+
+.facilityMeta {
+  display: flex;
+  gap: 10px;
+  font-size: 9px;
+  color: #687888;
+}
+
+.facilityMeta span {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.ready {
+  color: #25c99c !important;
+}
+
+/* BOTTOM */
+
+.bottomNav {
+  display: none;
+}
+
+/* MOBILE */
+
+@media(max-width: 800px) {
+
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .menuBtn {
+    display: block;
+  }
+
+  .mobileMenu {
+    position: fixed;
+    top: 76px;
+    right: 0;
+    left: 0;
+    z-index: 19;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 18px;
+    background: #0b1724;
+    border-bottom: 1px solid #233445;
+  }
+
+  .mobileMenu a {
+    color: #aeb9c5;
+  }
+
+  main {
+    width: 92%;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 55px 0;
+    gap: 35px;
+  }
+
+  h1 {
+    font-size: 47px;
+    letter-spacing: -2px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .riskCard {
+    padding: 23px;
+  }
+
+  .riskNumber {
+    font-size: 72px;
+  }
+
+  .alertBanner {
+    align-items: flex-start;
+  }
+
+  .alertBanner button {
+    display: none;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .fakeMap {
+    height: 300px;
+  }
+
+  .mapLegend {
+    display: none;
+  }
+
+  .facilityGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .facilitiesSection {
+    padding-bottom: 100px;
+  }
+
+  .bottomNav {
+    position: fixed;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 67px;
+    background: rgba(8,17,28,.96);
+    border-top: 1px solid #223244;
+    z-index: 50;
+    backdrop-filter: blur(15px);
+  }
+
+  .bottomNav div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #647383;
+    font-size: 9px;
+  }
+
+  .bottomNav svg {
+    width: 19px;
+  }
+
+  .bottomNav .bottomActive {
+    color: #20c99b;
+  }
+}
+
+@media(max-width: 450px) {
+
+  .brand h2 {
+    font-size: 16px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+  }
+
+  .primary,
+  .secondary {
+    justify-content: center;
+  }
+
+  .riskFactors {
+    gap: 4px;
+  }
+
+  .alertBanner {
+    padding: 15px;
+  }
+
+  .alertIcon {
+    width: 40px;
+    height: 40px;
+  }
+}
